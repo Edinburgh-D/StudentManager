@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <!--配置当前web应用的初始化参数-->
+    <context-param>
+        <param-name>Driver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>JDBCUrl</param-name>
+        <param-value>jdbc:mysql://localhost:3306/CourseDesign?serverTimezone=UTC</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>manageServlet</servlet-name>
+        <servlet-class>Controller.manageServlet</servlet-class>
+        <!--配置参数必须在 load-on-startup 前面-->
+        <init-param>
+            <!--参数名-->
+            <param-name>user</param-name>
+            <!--参数值-->
+            <param-value>litonghui</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>1234</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BigInputServlet</servlet-name>
+        <servlet-class>Controller.BigInputServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BigInputServlet</servlet-name>
+        <url-pattern>/DBCourseDesign/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>manageServlet</servlet-name>
+        <url-pattern>/DBCourseDesign</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
